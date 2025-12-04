@@ -1,0 +1,99 @@
+/* src/css/WelcomePage.css */
+
+/* Общий контейнер всей страницы */
+.welcome-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f9f5 0%, #e6f2e6 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Контейнер с приветственным текстом */
+.welcome-container {
+    background-color: #f0f8f0;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.welcome-container h1 {
+    color: #1b5e20;
+    font-size: 2.2rem;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+}
+
+/* Заголовок выбора роли */
+.welcome-title {
+    color: #2e7d32;
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Контейнер для кнопок */
+.role-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 320px;
+}
+
+/* Стиль кнопок — твой зелёный, скруглённые углы, без "прямоугольности" */
+.role-buttons .button {
+    padding: 14px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #4caf50; /* твой любимый зелёный */
+    border: none;
+    border-radius: 12px; /* скругление — не прямоугольник! */
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    text-align: center;
+    outline: none;
+}
+
+/* Эффект при наведении */
+.role-buttons .button:hover {
+    background-color: #43a047;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+/* Эффект при нажатии */
+.role-buttons .button:active {
+    transform: translateY(0);
+    background-color: #388e3c;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 600px) {
+    .welcome-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .welcome-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .welcome-title {
+        font-size: 1.5rem;
+    }
+
+    .role-buttons .button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}

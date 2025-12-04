@@ -10,6 +10,9 @@
     <artifactId>EduPlatform</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
+    <modules>
+        <module>backend</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -27,7 +30,7 @@
     </dependencies>
 
     <build>
-        <finalName>eduplatform</finalName>
+        <finalName>ROOT</finalName>
         <plugins>
             <!-- Запуск npm через систему -->
             <plugin>
