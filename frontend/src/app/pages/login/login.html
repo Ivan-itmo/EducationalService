@@ -1,0 +1,20 @@
+<!-- src/app/pages/login/login.html -->
+<div class="auth-container">
+  <h2>Вход</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Логин</label>
+      <input type="text" formControlName="username" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Пароль</label>
+      <input type="password" formControlName="password" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      Войти
+    </button>
+  </form>
+  <p>Нет аккаунта? <a routerLink="/register">Регистрация</a></p>
+</div>
