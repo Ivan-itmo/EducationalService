@@ -1,4 +1,3 @@
-// src/main/java/project/rest/AuthResource.java
 package project.rest;
 
 import jakarta.ejb.EJB;
@@ -44,7 +43,6 @@ public class AuthResource {
         }
     }
 
-    // DTO
     public static class RegisterRequest {
         private String username;
         private String password;

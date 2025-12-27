@@ -6,5 +6,4 @@ import jakarta.ws.rs.core.Application;
 
 @ApplicationPath("/api")
 public class RestApplication extends Application {
-    // пустой класс — нужен только для указания базового пути
 }

@@ -1,37 +1,28 @@
-// src/app/pages/register/register.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import {FormsModule } from '@angular/forms';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './registration.html',
   styleUrls: ['./registration.css']
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private http: HttpClient
-  ) {
-    // Только два поля: логин и пароль
-    this.registerForm = this.fb.group({
-      username: [''],
-      password: ['']
-    });
-  }
+export class RegisterComponent {
+  username = '';
+  password = '';
+
+  constructor(private router: Router, private http: HttpClient) {}
 
   onSubmit() {
-    const { username, password } = this.registerForm.value;
-
-    // Отправляем простой объект
-    this.http.post('/api/auth/register', { username, password }).subscribe({
+    this.http.post('/api/auth/register', {
+      username: this.username,
+      password: this.password
+    }).subscribe({
       next: () => {
         alert('Регистрация успешна! Теперь войдите.');
         this.router.navigate(['/login']);
