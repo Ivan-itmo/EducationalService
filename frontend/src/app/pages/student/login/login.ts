@@ -5,7 +5,7 @@ import {FormsModule } from '@angular/forms';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-student',
   standalone: true,
   imports: [RouterLink, FormsModule],
   templateUrl: './login.html',
@@ -14,10 +14,13 @@ import {RouterLink} from '@angular/router';
 export class LoginStudentComponent {
   username = '';
   password = '';
+  errorMessage: string | null = null;
 
   constructor(private router: Router, private http: HttpClient) {}
 
   onSubmit() {
+    this.errorMessage = null;
+
     this.http.post('/api/auth/login', {
       username: this.username,
       password: this.password
@@ -27,7 +30,8 @@ export class LoginStudentComponent {
         this.router.navigate(['/']);
       },
       error: () => {
-        alert('Неверный логин или пароль');
+        this.errorMessage = 'Неверный логин или пароль';
+        console.log('Ошибка:', this.errorMessage);
       }
     });
   }

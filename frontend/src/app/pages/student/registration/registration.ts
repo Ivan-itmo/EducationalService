@@ -5,7 +5,7 @@ import {FormsModule } from '@angular/forms';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-register-student',
   standalone: true,
   imports: [RouterLink, FormsModule],
   templateUrl: './registration.html',
@@ -15,20 +15,28 @@ import {RouterLink} from '@angular/router';
 export class RegisterStudentComponent {
   username = '';
   password = '';
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
 
   constructor(private router: Router, private http: HttpClient) {}
 
   onSubmit() {
+    this.errorMessage = null;
+    this.successMessage = null;
+
     this.http.post('/api/auth/register', {
       username: this.username,
       password: this.password
     }).subscribe({
       next: () => {
-        alert('Регистрация успешна! Теперь войдите.');
-        this.router.navigate(['/login']);
+        this.successMessage = 'Регистрация успешна! Теперь войдите.';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
       },
-      error: () => {
-        alert('Ошибка регистрации. Возможно, такой логин уже существует.');
+      error: (err) => {
+        this.errorMessage = 'Ошибка регистрации. Возможно, такой логин уже существует.';
+        console.error('Registration error:', err);
       }
     });
   }

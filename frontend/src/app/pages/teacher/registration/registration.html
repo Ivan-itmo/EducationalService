@@ -1,5 +1,11 @@
 <div class="auth-container">
   <h2>Регистрация</h2>
+
+  @if (errorMessage) {
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  }
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Логин</label>
@@ -26,7 +32,7 @@
     </button>
   </form>
 
-  <button class="btn btn-secondary" routerLink="/login">
+  <button class="btn btn-secondary" routerLink="/teacher/login">
     Уже есть аккаунт? Войти
   </button>
 </div>
