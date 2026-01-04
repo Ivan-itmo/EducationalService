@@ -1,5 +1,5 @@
 <div class="auth-container">
-  <h2>Регистрация</h2>
+  <h2>Вход</h2>
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Логин</label>
@@ -22,8 +22,11 @@
     </div>
 
     <button type="submit" class="btn btn-primary">
-      Зарегистрироваться
+      Войти
     </button>
   </form>
-  <p>Уже есть аккаунт? <a routerLink="/login">Войти</a></p>
+
+  <button class="btn btn-secondary" routerLink="/register">
+    Нет аккаунта? Регистрация
+  </button>
 </div>

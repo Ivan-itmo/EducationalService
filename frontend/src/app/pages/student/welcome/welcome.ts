@@ -1,4 +1,3 @@
-// src/app/pages/welcome/welcome.ts
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -9,4 +8,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './welcome.html',
   styleUrls: ['./welcome.css']
 })
-export class Welcome {}
+export class WelcomeStudent {}

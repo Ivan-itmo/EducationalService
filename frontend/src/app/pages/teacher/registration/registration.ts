@@ -5,29 +5,30 @@ import {FormsModule } from '@angular/forms';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [RouterLink, FormsModule],
-  templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  templateUrl: './registration.html',
+  styleUrls: ['./registration.css']
 })
-export class LoginComponent {
+
+export class RegisterTeacherComponent {
   username = '';
   password = '';
 
   constructor(private router: Router, private http: HttpClient) {}
 
   onSubmit() {
-    this.http.post('/api/auth/login', {
+    this.http.post('/api/auth/register', {
       username: this.username,
       password: this.password
     }).subscribe({
       next: () => {
-        localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate(['/']);
+        alert('Регистрация успешна! Теперь войдите.');
+        this.router.navigate(['/login']);
       },
       error: () => {
-        alert('Неверный логин или пароль');
+        alert('Ошибка регистрации. Возможно, такой логин уже существует.');
       }
     });
   }

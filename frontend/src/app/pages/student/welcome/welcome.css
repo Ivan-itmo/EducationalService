@@ -1,0 +1,46 @@
+.welcome-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.welcome-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.welcome-container p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+}
+
+.btn-secondary {
+  background-color: #FF8C00;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
