@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,4 +9,9 @@ import { RouterLink } from '@angular/router';
   templateUrl: './welcome.html',
   styleUrls: ['./welcome.css']
 })
-export class WelcomeTeacher {}
+export class WelcomeTeacher {
+  constructor(private router: Router) {}
+  goBack(): void {
+    this.router.navigate(['/']); // ← возвращаемся назад в истории браузера
+  }
+}

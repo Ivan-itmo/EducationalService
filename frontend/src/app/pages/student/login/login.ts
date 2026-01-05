@@ -23,6 +23,10 @@ export class LoginStudentComponent {
     private cdr: ChangeDetectorRef
   ) {}
 
+  goBack(): void {
+    this.router.navigate(['/student/welcome']); // ← возвращаемся назад в истории браузера
+  }
+
   onSubmit() {
     // Сбрасываем оба сообщения
     this.errorMessage = null;

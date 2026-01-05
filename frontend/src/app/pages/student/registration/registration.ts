@@ -20,6 +20,10 @@ export class RegisterStudentComponent {
 
   constructor(private router: Router, private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
+  goBack(): void {
+    this.router.navigate(['/student/welcome']); // ← возвращаемся назад в истории браузера
+  }
+
   onSubmit() {
     this.errorMessage = null;
     this.successMessage = null;
