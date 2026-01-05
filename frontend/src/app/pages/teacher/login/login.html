@@ -7,6 +7,10 @@
     </div>
   }
 
+  @if (successMessage) {
+    <div class="success-message">{{ successMessage }}</div>
+  }
+
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Логин</label>

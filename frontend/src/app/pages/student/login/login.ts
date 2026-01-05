@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {FormsModule } from '@angular/forms';
-import {RouterLink} from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-student',
@@ -15,23 +15,39 @@ export class LoginStudentComponent {
   username = '';
   password = '';
   errorMessage: string | null = null;
+  successMessage: string | null = null; // ← добавили
 
-  constructor(private router: Router, private http: HttpClient, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   onSubmit() {
+    // Сбрасываем оба сообщения
     this.errorMessage = null;
+    this.successMessage = null;
 
     this.http.post('/api/auth/login', {
       username: this.username,
       password: this.password
     }).subscribe({
-      next: () => {
+      next: (response: any) => {
+        // Сохраняем данные (если нужно)
         localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate(['/']);
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('role', response.role);
+
+        this.successMessage = 'Вход выполнен! Перенаправление...';
+        this.cdr.detectChanges();
+
+        // Через 1.5 секунды — переходим
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1000);
       },
       error: () => {
         this.errorMessage = 'Неверный логин или пароль';
-        console.log('Ошибка:', this.errorMessage);
         this.cdr.detectChanges();
       }
     });

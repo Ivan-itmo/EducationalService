@@ -30,9 +30,10 @@ export class RegisterStudentComponent {
     }).subscribe({
       next: () => {
         this.successMessage = 'Регистрация успешна! Теперь войдите.';
+        this.cdr.detectChanges();
         setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 2000);
+          this.router.navigate(['/student/login']);
+        }, 1000);
       },
       error: (err) => {
         this.errorMessage = 'Ошибка регистрации. Возможно, такой логин уже существует.';
