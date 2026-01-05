@@ -1,0 +1,78 @@
+<!-- src/app/student/profile/profile.html -->
+<div class="profile-container">
+  <h2>Мой профиль (студент)</h2>
+
+  <!-- Сообщение об успехе -->
+  @if (successMessage) {
+    <div class="success-message">
+      {{ successMessage }}
+    </div>
+  }
+
+  <!-- Сообщение об ошибке -->
+  @if (errorMessage) {
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Имя</label>
+      <input
+        type="text"
+        [(ngModel)]="profile.firstName"
+        name="firstName"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Фамилия</label>
+      <input
+        type="text"
+        [(ngModel)]="profile.lastName"
+        name="lastName"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Отчество</label>
+      <input
+        type="text"
+        [(ngModel)]="profile.middleName"
+        name="middleName"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Возраст</label>
+      <input
+        type="number"
+        [(ngModel)]="profile.age"
+        name="age"
+        class="form-control"
+        min="1"
+        max="100"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Изучаемый предмет</label>
+      <input
+        type="text"
+        [(ngModel)]="profile.subject"
+        name="subject"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">💾 Сохранить профиль</button>
+    <button type="button" class="btn btn-secondary" routerLink="/student/home">← Назад</button>
+  </form>
+</div>

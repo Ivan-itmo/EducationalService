@@ -47,7 +47,7 @@ export class LoginStudentComponent {
 
         // Через 1.5 секунды — переходим
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/student/home']);
         }, 1000);
       },
       error: () => {

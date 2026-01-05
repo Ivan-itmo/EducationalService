@@ -3,6 +3,7 @@ package project.rest;
 
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
+import project.entities.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import project.service.UserService;
@@ -67,6 +68,36 @@ public class ProfileResource {
             return Response.status(404)
                     .entity(new AuthResponse("Teacher not found"))
                     .build();
+        }
+    }
+
+    @GET
+    @Path("/student/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStudentProfile(@PathParam("username") String username) {
+        try {
+            Student student = (Student) userService.findByUsername(username);
+            if (student == null || student.getRole() != Role.STUDENT) {
+                return Response.status(404).entity("Student not found").build();
+            }
+            return Response.ok(student).build();
+        } catch (Exception e) {
+            return Response.status(500).entity("Error loading profile").build();
+        }
+    }
+
+    @GET
+    @Path("/teacher/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTeacherProfile(@PathParam("username") String username) {
+        try {
+            Teacher teacher = (Teacher) userService.findByUsername(username);
+            if (teacher == null || teacher.getRole() != Role.TEACHER) {
+                return Response.status(404).entity("Teacher not found").build();
+            }
+            return Response.ok(teacher).build();
+        } catch (Exception e) {
+            return Response.status(500).entity("Error loading profile").build();
         }
     }
 

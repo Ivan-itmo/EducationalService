@@ -48,7 +48,7 @@ export class LoginTeacherComponent {
 
         // Переход через 1.5 секунды
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/teacher/home']);
         }, 1000);
       },
       error: () => {
