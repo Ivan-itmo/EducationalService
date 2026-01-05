@@ -1,4 +1,3 @@
-// src/main/java/project/rest/RestApplication.java
 package project.rest;
 
 import jakarta.ws.rs.ApplicationPath;

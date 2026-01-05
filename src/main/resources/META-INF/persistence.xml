@@ -6,21 +6,12 @@
              version="3.0">
 
     <persistence-unit name="MyAppPU" transaction-type="JTA">
-        <!-- JNDI-имя твоего datasource из standalone.xml -->
         <jta-data-source>java:jboss/datasources/MyAppDB</jta-data-source>
-
-        <!-- Автоматически искать классы с @Entity в твоём проекте -->
         <properties>
             <!-- update = создавать/изменять таблицы при старте -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
-
-            <!-- Показывать SQL в логе (удобно для отладки) -->
             <property name="hibernate.show_sql" value="true"/>
-
-            <!-- Форматировать SQL -->
             <property name="hibernate.format_sql" value="true"/>
-
-            <!-- Дополнительно: указать диалект (не обязательно, но можно) -->
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.PostgreSQLDialect"/>
         </properties>

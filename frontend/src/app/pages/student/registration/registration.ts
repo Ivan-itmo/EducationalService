@@ -24,7 +24,7 @@ export class RegisterStudentComponent {
     this.errorMessage = null;
     this.successMessage = null;
 
-    this.http.post('/api/auth/register', {
+    this.http.post('/api/auth/register/student', {
       username: this.username,
       password: this.password
     }).subscribe({
