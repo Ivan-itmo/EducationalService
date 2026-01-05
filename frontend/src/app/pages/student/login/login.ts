@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {FormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ export class LoginStudentComponent {
   password = '';
   errorMessage: string | null = null;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   onSubmit() {
     this.errorMessage = null;
@@ -32,6 +32,7 @@ export class LoginStudentComponent {
       error: () => {
         this.errorMessage = 'Неверный логин или пароль';
         console.log('Ошибка:', this.errorMessage);
+        this.cdr.detectChanges();
       }
     });
   }
