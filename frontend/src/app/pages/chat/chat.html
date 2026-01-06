@@ -1,0 +1,34 @@
+<!-- src/app/pages/chat/chat.html -->
+<div class="chat-container">
+  <div class="chat-header">
+    <button class="btn-back" (click)="goBack()">← Назад</button>
+    <h2>Чат #{{ chatId }}</h2>
+  </div>
+
+  <!-- Список сообщений -->
+  <div class="messages" #messagesContainer>
+    @for (msg of messages; track msg.id) {
+      <div
+        class="message"
+        [class.sent]="msg.senderId == currentUserId"
+        [class.received]="msg.senderId != currentUserId"
+      >
+        <div class="message-content">{{ msg.content }}</div>
+        <div class="message-time">{{ msg.timestamp | date:'HH:mm' }}</div>
+      </div>
+    }
+  </div>
+
+  <!-- Форма отправки -->
+  <div class="chat-input">
+    <input
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Введите сообщение..."
+      class="input-message"
+    />
+    <button (click)="sendMessage()" [disabled]="!newMessage.trim()" class="btn-send">
+      ➤
+    </button>
+  </div>
+</div>

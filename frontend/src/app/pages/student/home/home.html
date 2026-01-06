@@ -2,14 +2,16 @@
 <div class="home-container">
   <h1>Главная страница</h1>
 
-  <!-- Кнопка профиля с логином и ID -->
   <div class="home-actions">
     <button class="btn btn-profile" routerLink="/student/profile">
       👤 {{ username }} (ID: {{ userId }})
     </button>
+    <button class="btn btn-logout" (click)="logout()">
+      🚪 Выйти
+    </button>
   </div>
 
-  <!-- Форма создания чата -->
+  <!-- Создание нового чата -->
   <div class="chat-section">
     <h2>Начать новый чат</h2>
     <div class="form-group">
@@ -28,7 +30,20 @@
       (click)="startChat()"
       [disabled]="!targetUserId || targetUserId <= 0"
     >
-      💬 Начать чат
+      💬 Создать чат
     </button>
   </div>
+
+  <!-- Список существующих чатов -->
+  @if (chats.length > 0) {
+    <div class="chats-list">
+      <h2>Ваши чаты</h2>
+      @for (chat of chats; track chat.id) {
+        <div class="chat-item" (click)="openChat(chat.id)">
+          <div class="chat-partner">Чат с пользователем ID: {{ getOtherUserId(chat) }}</div>
+          <div class="chat-time">{{ chat.createdAt | date:'dd.MM.yy HH:mm' }}</div>
+        </div>
+      }
+    </div>
+  }
 </div>

@@ -5,11 +5,11 @@
   padding: 20px;
 }
 
-/* Кнопка профиля */
+/* Кнопка профиля — другой цвет для учителя */
 .btn-profile {
   padding: 12px 20px;
   font-size: 16px;
-  background-color: #ff6b6b; /* ← другой цвет для учителя (опционально) */
+  background-color: #ff6b6b; /* красноватый оттенок */
   color: white;
   border: none;
   border-radius: 8px;
@@ -22,7 +22,7 @@
   background-color: #ff5252;
 }
 
-/* Секция чата (копия со студента) */
+/* Остальные стили — копия со студента */
 .chat-section {
   margin-top: 30px;
   padding: 20px;
@@ -75,4 +75,56 @@
 .btn-primary:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
+}
+
+/* Список чатов */
+.chats-list {
+  margin-top: 40px;
+}
+
+.chats-list h2 {
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.chat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-item:hover {
+  background: #fff0f0; /* лёгкий розовый при наведении */
+}
+
+.chat-partner {
+  font-weight: 500;
+  color: #c0392b;
+}
+
+.chat-time {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.btn-logout {
+  margin-left: 12px;
+  padding: 12px 20px;
+  background-color: #e74c3c; /* красный */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #c0392b;
 }

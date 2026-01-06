@@ -10,6 +10,7 @@ import { HomeStudent } from './pages/student/home/home';
 import { HomeTeacher } from './pages/teacher/home/home';
 import { ProfileTeacher } from './pages/teacher/profile/profile';
 import { ProfileStudent } from './pages/student/profile/profile';
+import { ChatComponent } from './pages/chat/chat';
 
 import { authGuard } from './auth.guard';
 
@@ -25,5 +26,6 @@ export const routes: Routes = [
     { path: 'student/home', component: HomeStudent, canActivate: [authGuard] },
     { path: 'teacher/home', component: HomeTeacher, canActivate: [authGuard] },
     { path: 'student/profile', component: ProfileStudent, canActivate: [authGuard] },
-    { path: 'teacher/profile', component: ProfileTeacher, canActivate: [authGuard] }
+    { path: 'teacher/profile', component: ProfileTeacher, canActivate: [authGuard] },
+    { path: 'chat/:chatId', component: ChatComponent, canActivate: [authGuard] }
 ];
