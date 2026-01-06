@@ -13,6 +13,8 @@ import project.util.PasswordUtil;
 
 import java.util.List;
 
+import static project.util.PasswordUtil.hashPassword;
+
 @Stateless
 public class UserService {
 
@@ -24,7 +26,7 @@ public class UserService {
         if (findByUsername(username) != null) {
             throw new RuntimeException("Username already taken");
         }
-        String hash = PasswordUtil.hashPassword(password);
+        String hash = hashPassword(password);
         Student student = new Student();
         student.setUsername(username);
         student.setPasswordHash(hash);
@@ -38,7 +40,7 @@ public class UserService {
         if (findByUsername(username) != null) {
             throw new RuntimeException("Username already taken");
         }
-        String hash = PasswordUtil.hashPassword(password);
+        String hash = hashPassword(password);
         Teacher teacher = new Teacher();
         teacher.setUsername(username);
         teacher.setPasswordHash(hash);
@@ -87,12 +89,12 @@ public class UserService {
         return results.isEmpty() ? null : results.get(0);
     }
 
-    // === АВТОРИЗАЦИЯ + ОПРЕДЕЛЕНИЕ РОЛИ ===
-    public String authenticate(String username, String password) {
+    public User authenticateAndGetUser(String username, String password) {
         User user = findByUsername(username);
-        if (user == null) return null;
-        if (PasswordUtil.checkPassword(password, user.getPasswordHash())) {
-            return user.getRole().name(); // "STUDENT" или "TEACHER"
+        if (user != null) {
+            if (PasswordUtil.checkPassword(password, user.getPasswordHash())) {
+                return user;
+            }
         }
         return null;
     }

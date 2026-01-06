@@ -41,6 +41,7 @@ export class LoginStudentComponent {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', response.username);
         localStorage.setItem('role', response.role);
+        localStorage.setItem('userId', response.id.toString());
 
         this.successMessage = 'Вход выполнен! Перенаправление...';
         this.cdr.detectChanges();

@@ -5,6 +5,7 @@ import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import project.entities.User;
 import project.service.UserService;
 
 @Path("/auth")
@@ -68,9 +69,17 @@ public class AuthResource {
                     .build();
         }
 
-        String role = userService.authenticate(request.getUsername(), request.getPassword());
-        if (role != null) {
-            return Response.ok(new LoginResponse(request.getUsername(), role)).build();
+        // Единый вызов: проверяет пароль и возвращает User или null
+        User user = userService.authenticateAndGetUser(request.getUsername(), request.getPassword());
+
+        if (user != null) {
+            return Response.ok(
+                    new LoginResponse(
+                            user.getUsername(),
+                            user.getRole().name(),
+                            user.getId()
+                    )
+            ).build();
         } else {
             return Response.status(401)
                     .entity(new AuthResponse("Invalid credentials"))
@@ -113,14 +122,17 @@ public class AuthResource {
     public static class LoginResponse {
         private String username;
         private String role;
+        private Long id;
 
-        public LoginResponse(String username, String role) {
+        public LoginResponse(String username, String role, Long id) {
             this.username = username;
             this.role = role;
+            this.id = id;
         }
 
         public String getUsername() { return username; }
         public String getRole() { return role; }
+        public Long getId() { return id; }
     }
 
     public static class AuthResponse {
